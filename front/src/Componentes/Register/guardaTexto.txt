@@ -1,0 +1,7 @@
+///! Esto va en DIV MID DATA
+<FaUser className='iconPerson IconPersonRegister' id='iconPerson' />
+<input type="text" placeholder='Enter UserName' id='inputEmail' />
+<input type="text" placeholder='Enter Email / Phone No' id='inputEmail' />
+<input type="text" placeholder='Password' id='inputEmail' />
+<input placeholder='Repeat Password' value={password} onChange={handlePasswordChange} ref={inputPassword} className='inputEmail' />
+{error && <p style={{ color: 'red' }} className='error'>{error}</p>}

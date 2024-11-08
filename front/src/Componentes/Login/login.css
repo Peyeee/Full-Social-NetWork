@@ -1,0 +1,424 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+span,
+p,
+a {
+    color: #F8F8FF;
+}
+
+.sectionContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.login-body {
+    background-image: url(../src/assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 55.3rem;
+    /* Para que ocupe toda la altura de la pantalla */
+}
+
+.Login-Section {
+    width: 30%;
+    background-color: #1C1C1C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+    background: rgba(12, 12, 12, 0.81);
+    border-radius: 2rem;
+    box-shadow: 0px 0px 15px rgba(255, 254, 254, 0.502);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(12, 12, 12, 1);
+    gap: 12rem;
+    margin-top: 4.5rem;
+}
+
+input {
+    border: 0px solid #D4D3E8;
+    background: rgba(12, 12, 12, 0.81);
+    background-color: white;
+    transition: 1s;
+}
+
+input:focus,
+input:active,
+input:hover {
+    outline: none;
+}
+
+.Login-Section-Div-Padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-Section-Div-Hijo-Input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 50%;
+}
+
+.login-Section-Div-Hijo-Input>icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: blue;
+    font-size: 3em;
+}
+
+.Div-top-SingIn {
+    height: 25%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Div-top-SingIn>span {
+    font-weight: 700;
+    font-family: Degular-Bold;
+    font-size: 3.5rem;
+    line-height: 53.08px;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.Div-top-SingIn>p {
+    font-family: Degular Display Demo;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 29.19px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+#inputEmail,
+#inputPassword {
+    appearance: none;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid #ffffff;
+    background: rgba(var(--frutillita));
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: .4em;
+    color: var(--frutillita);
+    background-color: none;
+}
+
+.Div-Mid-Data>input:focus {
+    transition: 0.5s;
+    border-bottom: .2em solid var(--frutillita);
+}
+
+.Div-Mid-Data {
+    width: 80%;
+    height: 30% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 1rem;
+}
+
+.Div-Mid-Data>form>input {
+    border-radius: 1rem;
+    padding: 0.1rem;
+    padding-left: 0.5rem;
+}
+
+
+.iconPerson {
+    color: var(--frutillita);
+    position: absolute;
+    top: 44px;
+    left: 20px;
+    font-size: 1.1rem;
+}
+
+.iconEye {
+    color: var(--frutillita);
+    position: absolute;
+    top: 95px;
+    right: 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.Div-Bottom {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+}
+
+
+.Div-Bottom>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.Div-Bottom>div>.cardsSocialMedias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 120%;
+    border-radius: 3rem;
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.cardsSocialMedias {
+    cursor: pointer;
+}
+
+.Div-Bottom>div>.cardsSocialMedias>span {
+    width: 4rem;
+    transition: 0.3s;
+}
+
+.Div-Bottom>div>div>span {
+    color: var(--frutillita);
+    width: 75%;
+}
+
+.Div-Bottom>div>div>span:hover {
+    color: #1C1C1C;
+    transition: 0.3s;
+}
+
+.desaparecer {
+    display: none;
+}
+
+.formLogin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.buttonSign {
+    width: 80%;
+    background-color: var(--frutillita);
+    height: 2.5rem;
+    border-radius: 3rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+}
+
+.buttonSign:hover {
+    background-color: #DC143C;
+    transition: 0.3s;
+}
+
+.sectionContainer {
+    width: 100 ! important;
+}
+
+
+.iconsSocialMedia>path {
+    color: black;
+}
+
+/*! Media Querys   */
+
+/* Media Query para pantallas menores a 1400px */
+/* Media Query para pantallas menores a 1400px */
+@media (max-width: 1400px) {
+    .sectionContainer {
+        width: 95% !important;
+        /* Ajusta el ancho del contenedor */
+    }
+
+    .img {
+        display: none;
+    }
+
+    .Login-Section {
+        width: 80%;
+        /* Ajusta el ancho del formulario de login */
+        height: 35rem;
+        /* Ajusta la altura del formulario de login */
+    }
+
+    .sectionContainer,
+    #login {
+        width: 100% !important;
+    }
+
+    .Div-top-SingIn>span {
+        font-size: 2.5rem;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .Div-top-SingIn>p {
+        font-size: 18px;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .inputEmail,
+    .inputPassword {
+        width: 100%;
+        /* Ajusta el ancho de los inputs para que ocupen el 100% del contenedor */
+    }
+
+    .Div-Mid-Data {
+        width: 100%;
+        /* Ajusta el ancho del contenedor de datos del medio */
+        height: auto;
+        /* Ajusta la altura según el contenido */
+    }
+
+    .Div-Bottom {
+        height: auto;
+        /* Ajusta la altura según el contenido */
+        flex-direction: column;
+        /* Cambia la dirección del flex a columna para pantallas pequeñas */
+    }
+
+    .Div-Bottom>div {
+        flex-direction: column;
+        /* Cambia la dirección del flex a columna para pantallas pequeñas */
+    }
+}
+
+/* Media Query para pantallas menores a 1024px (Tabletas) */
+@media (max-width: 1024px) {
+    .sectionContainer {
+        flex-direction: column;
+        /* Cambia la dirección del flex a columna para pantallas más pequeñas */
+    }
+
+    .Login-Section {
+        width: 90%;
+        /* Ajusta el ancho del formulario de login */
+        height: auto;
+        /* Ajusta la altura según el contenido */
+    }
+
+    .inputEmail,
+    .inputPassword {
+        width: 100%;
+        /* Ajusta el ancho de los inputs */
+    }
+
+    .Div-top-SingIn>span {
+        font-size: 2rem;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .Div-top-SingIn>p {
+        font-size: 16px;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .Div-Mid-Data {
+        width: 100%;
+        /* Ajusta el ancho del contenedor de datos del medio */
+    }
+
+    .div-input-search {
+        display: none !important;
+    }
+
+
+    .logoHome {
+        display: none;
+    }
+
+    .Div-Bottom {
+        width: 100%;
+        /* Ajusta el ancho del contenedor de la parte inferior */
+        flex-direction: column;
+        /* Cambia la dirección del flex a columna */
+    }
+
+    .cardsSocialMedias {
+        width: 8rem;
+        /* Ajusta el ancho de las tarjetas sociales */
+    }
+}
+
+/* Media Query para pantallas menores a 768px (Móviles) */
+@media (max-width: 768px) {
+    .sectionContainer {
+        padding: 1rem;
+        /* Añade padding para evitar que el contenido toque los bordes */
+    }
+
+    .Login-Section {
+        width: 100%;
+        /* Ajusta el ancho del formulario de login */
+        height: auto;
+        /* Ajusta la altura según el contenido */
+    }
+
+    .Div-top-SingIn>span {
+        font-size: 1.5rem;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .Div-top-SingIn>p {
+        font-size: 14px;
+        /* Ajusta el tamaño del texto en pantallas más pequeñas */
+    }
+
+    .inputEmail,
+    .inputPassword {
+        width: 100%;
+        /* Ajusta el ancho de los inputs */
+    }
+
+    .Div-Mid-Data {
+        width: 100%;
+        /* Ajusta el ancho del contenedor de datos del medio */
+    }
+
+    .Div-Bottom {
+        width: 100%;
+        /* Ajusta el ancho del contenedor de la parte inferior */
+        flex-direction: column;
+        /* Cambia la dirección del flex a columna */
+    }
+
+    .cardsSocialMedias {
+        width: 6rem;
+        /* Ajusta el ancho de las tarjetas sociales */
+    }
+}
