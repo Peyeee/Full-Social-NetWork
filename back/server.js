@@ -6,19 +6,39 @@ const app = express();
 const Usuario = require('./models/usuariosModels'); // Importa el modelo de Usuario
 const usuariosRoutes = require('./routes/usuariosRoutes');
 const bodyParser = require('body-parser')
+const session = require("express-session");
+require('dotenv').config();
 
 dotenv.config();
 
 
 //! Middleware
 app.use(express.json()); //* Para parsear JSON en las solicitudes
+
 app.use(cors()); //* Para permitir acceso desde el frontend
+
 app.use(bodyParser.urlencoded({ extended: true })); // Para poder leer los datos del formulario
+
 app.use(express.urlencoded({ extended: true }));
+
+
 //* Conexión a la base de datos
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Conectado a MongoDB'))
-    .catch(err => console.error('Error al conectar a MongoDB:', err));
+// mongoose.connect(process.env.MONGODB_URI)
+//     .then(() => console.log('Conectado a MongoDB'))
+//     .catch(err => console.error('Error al conectar a MongoDB:', err));
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+//* Inicializar la sesión
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 
 // //!Guardar datos del formulario de inicio de sesión
 // app.post("/save-usuarios", async (req, res) => {
