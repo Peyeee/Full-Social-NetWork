@@ -27,11 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 //     .then(() => console.log('Conectado a MongoDB'))
 //     .catch(err => console.error('Error al conectar a MongoDB:', err));
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-
+mongoose.connect(process.env.MONGODB_URI)
+// , {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }
 //* Inicializar la sesión
 app.use(session({
     secret: process.env.SESSION_SECRET,
