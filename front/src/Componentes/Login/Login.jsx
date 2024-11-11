@@ -57,7 +57,7 @@ function Main({ setUsername }) {
                                     <p>Hey, Enter your details to login to your account</p>
                                 </div>
                                 <div className='Div-Mid-Data'>
-                                    <form action="http://localhost:5000/get-usuarios" method='GET' className='formLogin'>
+                                    <form action="https://full-social-network.onrender.com/get-usuarios" method='GET' className='formLogin'>
 
                                         <label htmlFor="username">Username:</label>
                                         <input type="text" id='usernameLogin' name='username' required />

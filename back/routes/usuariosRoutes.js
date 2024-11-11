@@ -24,7 +24,7 @@ router.get('/get-usuarios', async (req, res) => {
         }
 
         //? SI COINCIDE LO REDIRECCIONA
-        return res.redirect("http://localhost:5173/home")
+        return res.redirect("https://full-social-network-1.onrender.com/home")
     } catch (error) {
         console.log("Error al obtener los usuarios" + error);
         res.status(500).send("No se pudo obtener los usuarios")
@@ -51,7 +51,7 @@ router.post("/save-usuarios", async (req, res) => {
         console.log('Datos recibidos:', { username, email, password });  //!QUITAR EN UN FUTURO
 
         //? REDIRECCIONAR
-        res.redirect("http://localhost:5173/")
+        res.redirect("https://full-social-network-1.onrender.com/")
     } catch (error) {
         console.error(`Error al guardar el usuario: ${error}`,);
         res.status(500).send('Error al guardar el usuario');
