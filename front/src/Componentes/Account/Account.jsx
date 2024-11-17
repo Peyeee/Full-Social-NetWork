@@ -45,12 +45,16 @@ function MyAccount() {
     };
 
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+
     useEffect(() => {
         const storedUsername = localStorage.getItem("username");
         if (storedUsername) {
             setUsername(storedUsername);
+        } else {
+            navigate("/")
         }
-    }, []);
+    }, [navigate()]);
 
     const [description, setDescription] = useState('Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut itaque debitis ratione sunt, ut nobis...');
     const [isEditing, setIsEditing] = useState(false);
@@ -75,9 +79,9 @@ function MyAccount() {
     useEffect(() => {
         const getUsername = async () => {
             try {
-                const response = await fetch("http://localhost:5000/get-usuarios");
-                const data = await response.json;
-                setUsername = (data.username)
+                let response = await fetch("http://localhost:5000/get-usuarios");
+                let data = await response.json;
+                let setUsername = (data.username)
             } catch (error) {
                 console.error("error al obtener el nombre" + error)
             };

@@ -84,7 +84,7 @@ function Register(props) {
                                 <div className='Div-Mid-Data'>
                                     {/* ! This component needs to handle error states */}
 
-                                    <form action="https://full-social-network.onrender.com/save-usuarios" method='POST' className='formRegister'>
+                                    <form action="save-usuarios" method='POST' className='formRegister'>
 
                                         <label htmlFor="username">Username:</label>
                                         <input type="text" id='username' name='username' required />
@@ -93,7 +93,7 @@ function Register(props) {
                                         <input type="text" id='email' name='email' />
 
                                         <label htmlFor="password">Password:</label>
-                                        <input type="number" id='password' name='password' />
+                                        <input type="password" id='password' name='password' />
                                         <button type='submit' className='buttonLog'>Enviar</button>
                                     </form>
                                 </div>

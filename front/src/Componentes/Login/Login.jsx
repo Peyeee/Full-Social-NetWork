@@ -7,8 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
 import { motion } from 'framer-motion';
-function Main({ setUsername }) {
 
+function Main() {
+    const [username, setUsername] = useState()
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
     const [password, setPassword] = useState('');
@@ -57,13 +58,12 @@ function Main({ setUsername }) {
                                     <p>Hey, Enter your details to login to your account</p>
                                 </div>
                                 <div className='Div-Mid-Data'>
-                                    <form action="https://full-social-network.onrender.com/get-usuarios" method='GET' className='formLogin'>
-
+                                    <form action="get-usuarios" method='GET' className='formLogin'>
                                         <label htmlFor="username">Username:</label>
                                         <input type="text" id='usernameLogin' name='username' required />
 
                                         <label htmlFor="password">Password:</label>
-                                        <input type="number" id='passwordLogin' name='password' />
+                                        <input type="password" id='passwordLogin' name='password' />
 
                                         <button type='submit' className='buttonSign'>Enviar</button>
                                     </form>
