@@ -6,8 +6,8 @@ const bcrypt = require('bcrypt');
 
 
 //! BUSCAR USUARIO EN LA BASE DE DATOS
-router.get('/get-usuarios', async (req, res) => {
-    const { username, password } = req.query;
+router.post('/get-usuarios', async (req, res) => {
+    const { username, password } = req.body;
     try {
 
         //? VERIFICAR SI EL USUARIO EXISTE
@@ -24,7 +24,7 @@ router.get('/get-usuarios', async (req, res) => {
         }
 
         //? SI COINCIDE LO REDIRECCIONA
-        return res.redirect("https://full-social-network-1.onrender.com/home")
+        return res.redirect("http://localhost:5173/home")
     } catch (error) {
         console.log("Error al obtener los usuarios" + error);
         res.status(500).send("No se pudo obtener los usuarios")
@@ -51,7 +51,7 @@ router.post("/save-usuarios", async (req, res) => {
         console.log('Datos recibidos:', { username, email, password });  //!QUITAR EN UN FUTURO
 
         //? REDIRECCIONAR
-        res.redirect("https://full-social-network-1.onrender.com/")
+        res.redirect("http://localhost:5173")
     } catch (error) {
         console.error(`Error al guardar el usuario: ${error}`,);
         res.status(500).send('Error al guardar el usuario');
@@ -73,6 +73,13 @@ router.put('/edit-usuarios', async (req, res) => {
         return res.status(500).json({ error: "Error en el servidor" });
     }
 });
+
+//! CARGAR PFP
+router.post('/upload', async (req, res) => {
+    upload.single('image'), imageController.uploadImage
+})
+
+
 
 // //! ELIMINAR USUARIOS
 // router.delete('/:id', usuariosController.eliminarUsuarios);

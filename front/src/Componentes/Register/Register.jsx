@@ -11,9 +11,12 @@ import { FaFacebook } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from 'react';
 import NavBar from '../NavBar/NavBar'
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function Register(props) {
+    const [imagen, setImagen] = useState(null);
+
     const changeType = () => {
         const input = document.getElementById('inputPassword');
         if (input.type === 'password') {
@@ -30,6 +33,8 @@ function Register(props) {
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const fileInputRef = useRef(null);
+
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -48,18 +53,26 @@ function Register(props) {
         } else {
             navigate('/home');
         }
-
-
     };
-
-
     const inputPassword = useRef(null);
     const [passWordHide, setpasswordHide] = useState(true)
+
+    const handleButtonClick = () => {
+        fileInputRef.current.click();
+    };
 
     const handlePasswordHide = () => {
         setpasswordHide(!passWordHide);
         if (inputPassword.current) {
             inputPassword.current.type = passWordHide ? 'text' : 'password';
+        }
+    };
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const imageURL = URL.createObjectURL(file);
+            setImagen(imageURL);
+            localStorage.setItem('pfp', imageURL); // Almacena la URL en localStorage
         }
     };
 
@@ -84,8 +97,11 @@ function Register(props) {
                                 <div className='Div-Mid-Data'>
                                     {/* ! This component needs to handle error states */}
 
-                                    <form action="save-usuarios" method='POST' className='formRegister'>
-
+                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister'>
+                                        <div className='pruebaPrimeraLogin'>
+                                            {imagen && <img src={imagen} alt="Profile" className='imagenPptLogin' />}
+                                        </div>
+                                        <button onClick={handleButtonClick}>pfp</button>
                                         <label htmlFor="username">Username:</label>
                                         <input type="text" id='username' name='username' required />
 
@@ -122,8 +138,16 @@ function Register(props) {
                         </div>
                     </div >
                 </div>
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
             </>
+
         </motion.div>
+
     )
 }
 

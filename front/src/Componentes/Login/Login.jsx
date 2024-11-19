@@ -1,45 +1,28 @@
 import './login.css';
 import Img2 from '../../assets/Img/goofy-relaxed-goat.png';
-import { FaUser } from "react-icons/fa6";
-import { BiShowAlt } from "react-icons/bi";
 import { FaGoogle, FaMicrosoft, FaFacebook } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import NavBar from '../NavBar/NavBar';
 import { motion } from 'framer-motion';
 
 function Main() {
-    const [username, setUsername] = useState()
     const navigate = useNavigate();
-    const [inputValue, setInputValue] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const inputPassword = useRef(null);
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Guardar username en localStorage
+        localStorage.setItem('username', username);
+
+        // Redirigir a la página de inicio
+        navigate('/home');
     };
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
-        if (inputPassword.current) {
-            inputPassword.current.type = passwordVisible ? 'text' : 'password';
-        }
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[_!]).{1,}$/;
-        if (password === '') {
-            setError("Por favor, ingrese una contraseña");
-        } else if (!regex.test(password)) {
-            setError("Por favor, ingrese una contraseña con mayúscula, minúscula, un número y un carácter especial.");
-        } else {
-            localStorage.setItem("username", inputValue); // Almacenar el nombre de usuario en el localStorage
-            navigate('/home'); // Navegar a la página de inicio
-        }
-    };
+
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -58,9 +41,17 @@ function Main() {
                                     <p>Hey, Enter your details to login to your account</p>
                                 </div>
                                 <div className='Div-Mid-Data'>
-                                    <form action="get-usuarios" method='GET' className='formLogin'>
+                                    <form action="http://localhost:5000/get-usuarios" method='POST' className='formLogin' onSubmit={handleSubmit} >
+                                        <label htmlFor="pfp"></label>
                                         <label htmlFor="username">Username:</label>
-                                        <input type="text" id='usernameLogin' name='username' required />
+                                        <input
+                                            type="text"
+                                            id="username"
+                                            name="username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
+                                        />
 
                                         <label htmlFor="password">Password:</label>
                                         <input type="password" id='passwordLogin' name='password' />
@@ -69,7 +60,6 @@ function Main() {
                                     </form>
                                 </div>
                                 <div className='Div-Bottom'>
-                                    {/* <button id='Boton' onClick={handleSubmit} className='buttonSign'>Sign in</button> */}
                                     <span> -Or Sign In with- </span>
                                     <div>
                                         <div className='cardsSocialMedias'>

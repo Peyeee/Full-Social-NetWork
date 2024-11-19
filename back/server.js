@@ -7,6 +7,7 @@ const Usuario = require('./models/usuariosModels'); // Importa el modelo de Usua
 const usuariosRoutes = require('./routes/usuariosRoutes');
 const bodyParser = require('body-parser')
 const session = require("express-session");
+const path = require('path');
 require('dotenv').config();
 
 dotenv.config();
@@ -16,6 +17,13 @@ dotenv.config();
 app.use(express.json()); //* Para parsear JSON en las solicitudes
 
 app.use(cors()); //* Para permitir acceso desde el frontend
+
+// app.use(cors({
+//     origin: 'http://localhost:3000', // Reemplaza con el puerto de tu frontend
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+//     credentials: true // Si usas cookies
+// }));
+
 
 app.use(bodyParser.urlencoded({ extended: true })); // Para poder leer los datos del formulario
 

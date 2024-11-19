@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MdAddToPhotos } from "react-icons/md";
 import { useEffect, useRef, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 function MyAccount() {
     const [follow, setFollow] = useState(false);
