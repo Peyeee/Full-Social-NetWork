@@ -18,17 +18,21 @@
 .Div-Bottom {
     position: relative !important;
 }
-.imagenPptLogin{
+
+.imagenPptLogin {
     border-radius: 50% !important;
-    width: 10rem;
-    height: 10rem;
-    position: static;
+    width: 8rem;
+    height: 8rem;
+    position: relative;
+    right: 12rem;
+    bottom: 15rem;
 }
-.pruebaPrimeraLogin{
+
+.pruebaPrimeraLogin {
     border-radius: 50% !important;
     width: 1rem;
     height: 1rem;
-    position: static;   
+    position: static;
 }
 
 .Div-Mid-Data {

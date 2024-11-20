@@ -1,9 +1,38 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const usuariosController = require('../controllers/usuariosControllers.js');
 const Usuario = require("../models/usuariosModels")
 const bcrypt = require('bcrypt');
+const path = require('path')
 
+
+//! ROUTER PARA ARCHIVOS MULTIMEDIAS
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, "../public/uploads"));
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Agrega un timestamp al nombre del archivo
+    }
+})
+
+//!VALIDAR EL ARCHIVO DE LA IMAGEN
+const fileFilter = (req, res, cb) => {
+    const filetypes = /jpeg|jpg|png|gif/; // Formatos permitidos
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()); // Verifica la extensión del archivo
+    const mimetype = filetypes.test(file.mimetype);
+    if (mimetype && extname) {
+        return cb(null, true)
+    } else {
+        cd("El archivo debe ser de tipo jpeg,jpg,png o gif")
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    fileFilter: fileFilter
+});
 
 //! BUSCAR USUARIO EN LA BASE DE DATOS
 router.post('/get-usuarios', async (req, res) => {
@@ -34,24 +63,36 @@ router.post('/get-usuarios', async (req, res) => {
 
 
 //! CREAR USUARIOS
-router.post("/save-usuarios", async (req, res) => {
-    const { username, email, password } = req.body;
+router.post("/save-usuarios", upload.single("imagen"), async (req, res) => {
+    const { username, email, password, imagen } = req.body;
+    const imagenPath = req.file ? req.file.filename : "";
     try {
+
         //? GENERAR "ENCRIPTADOR DE CONTRASEÑAS"
         const salt = await bcrypt.genSalt(10)
 
         //? ENCRIPTAR LA CONTRASEÑA
         const hashedPassword = await bcrypt.hash(password, salt)
-        const nuevoUsuario = new Usuario({ username, email, password: hashedPassword });
+
+        const nuevoUsuario = new Usuario({
+            username,
+            email,
+            password: hashedPassword,
+            imagen: imagenPath,
+        });
 
         //? Guarda el nuevo usuario en la base de datos
         await nuevoUsuario.save();
 
         //? Verifica los datos
         console.log('Datos recibidos:', { username, email, password });  //!QUITAR EN UN FUTURO
-
+        console.log('req.file:', req.file); // Verifica el archivo cargado
+        console.log('req.body:', req.body); // Verifica los demás datos
         //? REDIRECCIONAR
         res.redirect("http://localhost:5173")
+
+
+
     } catch (error) {
         console.error(`Error al guardar el usuario: ${error}`,);
         res.status(500).send('Error al guardar el usuario');

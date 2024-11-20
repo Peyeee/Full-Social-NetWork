@@ -49,24 +49,10 @@ app.use(session({
 }));
 
 // //!Guardar datos del formulario de inicio de sesión
-// app.post("/save-usuarios", async (req, res) => {
-//     const { username, email, password } = req.body;
-//     console.log('Datos recibidos:', { username, email, password }); // Verifica los datos
-//     try {
-//         const nuevoUsuario = new Usuario({ username, email, password });
-//         await nuevoUsuario.save(); // Guarda el nuevo usuario en la base de datos
-//         res.redirect("http://localhost:5173/");
-//     } catch (error) {
-//         console.error(`Error al guardar el usuario: ${error}`,);
-//         res.status(500).send('Error al guardar el usuario');
-//     }
-// });
+//TODO
 
 //! RUTA RAIZ
-// app.use("/", (req, res) => {
-//     res.send("Datos recibido ")
-// })
-
+//TODO
 //! Definir rutas
 app.use('/', require('./routes/usuariosRoutes'));
 

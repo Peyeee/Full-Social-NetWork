@@ -97,56 +97,47 @@ function Register(props) {
                                 <div className='Div-Mid-Data'>
                                     {/* ! This component needs to handle error states */}
 
-                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister'>
-                                        <div className='pruebaPrimeraLogin'>
-                                            {imagen && <img src={imagen} alt="Profile" className='imagenPptLogin' />}
-                                        </div>
-                                        <button onClick={handleButtonClick}>pfp</button>
-                                        <label htmlFor="username">Username:</label>
-                                        <input type="text" id='username' name='username' required />
+                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister' enctype="multipart/form-data">
+                                    <input type="file" name='pfp' />
+                                    <label htmlFor="username">Username:</label>
+                                    <input type="text" id='username' name='username' required />
 
-                                        <label htmlFor="email">Email:</label>
-                                        <input type="text" id='email' name='email' />
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="text" id='email' name='email' />
 
-                                        <label htmlFor="password">Password:</label>
-                                        <input type="password" id='password' name='password' />
-                                        <button type='submit' className='buttonLog'>Enviar</button>
-                                    </form>
-                                </div>
-                                <div className='Div-Bottom'>
-                                    <span > -Or Sign In with- </span>
-                                    <div>
-                                        <div className='cardsSocialMedias'>
-                                            <FaGoogle className='iconsSocialMedia' />
-                                            <span>Google</span>
-                                        </div>
-                                        <div className='cardsSocialMedias'>
-                                            <FaMicrosoft className='iconsSocialMedia' />
-                                            <span>Microsoft</span>
-                                        </div>
-                                        <div className='cardsSocialMedias'>
-                                            <FaFacebook className='iconsSocialMedia' />
-                                            <span>Facebook</span>
-                                        </div>
-                                    </div>
-                                    <span>Already have an account?</span><Link to={'/'}>Log In</Link>
-                                </div>
+                                    <label htmlFor="password">Password:</label>
+                                    <input type="password" id='password' name='password' />
+                                    <button type='submit' className='buttonLog'>Enviar</button>
+                                </form>
                             </div>
-                        </section >
-                        <div className='img-container'>
-                            <img src={Img2} alt="" className='img' />
-                        </div>
-                    </div >
+                            <div className='Div-Bottom'>
+                                <span > -Or Sign In with- </span>
+                                <div>
+                                    <div className='cardsSocialMedias'>
+                                        <FaGoogle className='iconsSocialMedia' />
+                                        <span>Google</span>
+                                    </div>
+                                    <div className='cardsSocialMedias'>
+                                        <FaMicrosoft className='iconsSocialMedia' />
+                                        <span>Microsoft</span>
+                                    </div>
+                                    <div className='cardsSocialMedias'>
+                                        <FaFacebook className='iconsSocialMedia' />
+                                        <span>Facebook</span>
+                                    </div>
+                                </div>
+                                <span>Already have an account?</span><Link to={'/'}>Log In</Link>
+                            </div>
+                    </div>
+                </section >
+                <div className='img-container'>
+                    <img src={Img2} alt="" className='img' />
                 </div>
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                />
+            </div >
+        </div>
             </>
 
-        </motion.div>
+        </motion.div >
 
     )
 }
