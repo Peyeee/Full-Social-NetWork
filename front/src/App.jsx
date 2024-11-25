@@ -7,6 +7,10 @@ import NavBar from './Componentes/NavBar/NavBar';
 import MiAccount from './Componentes/Account/Account.jsx';
 import Register from './Componentes/Register/Register.jsx';
 import CosmeFulanito from './Componentes/CosmeFulanito/Cosme.jsx';
+import io from "socket.io-client"
+
+const sockek = io("/")
+
 function App() {
   const [tweets, setTweets] = useState([]);
   const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario

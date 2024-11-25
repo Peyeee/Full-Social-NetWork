@@ -5,27 +5,29 @@ const usuariosController = require('../controllers/usuariosControllers.js');
 const Usuario = require("../models/usuariosModels")
 const bcrypt = require('bcrypt');
 const path = require('path')
+const imageController = require('../controllers/imageController');
 
 
 //! ROUTER PARA ARCHIVOS MULTIMEDIAS
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../public/uploads"));
+        cb(null, path.join(__dirname, "../uploads")); // Ruta donde se guardarán los archivos
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname)); // Agrega un timestamp al nombre del archivo
     }
-})
+});
 
 //!VALIDAR EL ARCHIVO DE LA IMAGEN
-const fileFilter = (req, res, cb) => {
+const fileFilter = (req, file, cb) => {
     const filetypes = /jpeg|jpg|png|gif/; // Formatos permitidos
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase()); // Verifica la extensión del archivo
     const mimetype = filetypes.test(file.mimetype);
+
     if (mimetype && extname) {
-        return cb(null, true)
+        return cb(null, true); // Archivo válido
     } else {
-        cd("El archivo debe ser de tipo jpeg,jpg,png o gif")
+        cb("Error: el archivo debe ser una imagen (jpeg, jpg, png, gif)!"); // Archivo no válido
     }
 }
 
@@ -52,19 +54,39 @@ router.post('/get-usuarios', async (req, res) => {
             return res.status(401).send("Contraseña incorrecta");
         }
 
-        //? SI COINCIDE LO REDIRECCIONA
-        return res.redirect("http://localhost:5173/home")
+        //?JSON
+        res.status(200).json({
+            username: usuario.username,
+            email: usuario.email,
+            imagen: usuario.imagen
+        })
+
+        // //? SI COINCIDE LO REDIRECCIONA
+        // return res.redirect("http://localhost:5173/home")
     } catch (error) {
         console.log("Error al obtener los usuarios" + error);
         res.status(500).send("No se pudo obtener los usuarios")
     }
 });
 
-
+//!RUTA PARA MOSTRAR IMAGEN
+router.get("/image:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const image = await Image.findById(id);
+        if (!image) {
+            return res.status(404).json({ message: "imagen no encontrada", error })
+        };
+        res.set('Content-Type', image.contentType);
+        res.send(image.imageData);
+    } catch (err) {
+        res.status(500).json({ message: `Error al obtener la imagen ${err}`, error: err });
+    }
+})
 
 //! CREAR USUARIOS
 router.post("/save-usuarios", upload.single("imagen"), async (req, res) => {
-    const { username, email, password, imagen } = req.body;
+    const { username, email, password } = req.body;
     const imagenPath = req.file ? req.file.filename : "";
     try {
 

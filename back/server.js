@@ -3,44 +3,56 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
-const Usuario = require('./models/usuariosModels'); // Importa el modelo de Usuario
+const Usuario = require('./models/usuariosModels');
 const usuariosRoutes = require('./routes/usuariosRoutes');
 const bodyParser = require('body-parser')
 const session = require("express-session");
 const path = require('path');
 require('dotenv').config();
 
-dotenv.config();
+//!Socket 
+const http = require('http');
+const { Server } = require("socket.io");
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST", "DELETE"]
+    }
+});
 
+//?IO
+io.on('connection', (socket) => {
+    console.log(`usuario conectado: ${socket.id}`)
+
+    socket.on("new_tweet", (tweet) => {
+        console.log("Nuevo tweet recibido:", tweet);
+        // Retransmitir el tweet a todos los clientes
+        io.emit("new_tweet", tweet);
+    })
+});
+
+//!DotEnv
+dotenv.config();
 
 //! Middleware
 app.use(express.json()); //* Para parsear JSON en las solicitudes
 
-app.use(cors()); //* Para permitir acceso desde el frontend
-
-// app.use(cors({
-//     origin: 'http://localhost:3000', // Reemplaza con el puerto de tu frontend
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-//     credentials: true // Si usas cookies
-// }));
+//!Cors
+app.use(cors({
+    origin: 'http://localhost:5173', // Cambia esto al origen de tu frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
 
 
+//!MiddleWare Formulario
 app.use(bodyParser.urlencoded({ extended: true })); // Para poder leer los datos del formulario
-
 app.use(express.urlencoded({ extended: true }));
 
-
-//* Conexión a la base de datos
-// mongoose.connect(process.env.MONGODB_URI)
-//     .then(() => console.log('Conectado a MongoDB'))
-//     .catch(err => console.error('Error al conectar a MongoDB:', err));
-
+//!Conectar a la DB
 mongoose.connect(process.env.MONGODB_URI)
-// , {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }
-//* Inicializar la sesión
+
+//! Inicializar la sesión
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -48,19 +60,13 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-// //!Guardar datos del formulario de inicio de sesión
-//TODO
-
-//! RUTA RAIZ
-//TODO
 //! Definir rutas
 app.use('/', require('./routes/usuariosRoutes'));
-
-//!
 app.use("/usuario", usuariosRoutes)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //! Iniciar servidor
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });

@@ -42,18 +42,6 @@ function Register(props) {
 
     const spanError = document.createElement("span");
     const div = document.getElementById("Div-Mid-Data")
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[_!]).{1,}$/;
-        if (password === '') {
-            setError("Por favor, ingrese una contraseña");
-        } else if (!regex.test(password)) {
-            console.log('Por favor, ingrese una contraseña con mayúscula, minúscula, un número y un carácter especial.')
-            setError("Por favor, ingrese una contraseña con mayúscula, minúscula, un número y un carácter especial.");;
-        } else {
-            navigate('/home');
-        }
-    };
     const inputPassword = useRef(null);
     const [passWordHide, setpasswordHide] = useState(true)
 
@@ -65,14 +53,6 @@ function Register(props) {
         setpasswordHide(!passWordHide);
         if (inputPassword.current) {
             inputPassword.current.type = passWordHide ? 'text' : 'password';
-        }
-    };
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const imageURL = URL.createObjectURL(file);
-            setImagen(imageURL);
-            localStorage.setItem('pfp', imageURL); // Almacena la URL en localStorage
         }
     };
 
@@ -97,44 +77,44 @@ function Register(props) {
                                 <div className='Div-Mid-Data'>
                                     {/* ! This component needs to handle error states */}
 
-                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister'>
-                                    <input type="file" name='pfp' />
-                                    <label htmlFor="username">Username:</label>
-                                    <input type="text" id='username' name='username' required />
+                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister' enctype="multipart/form-data">
+                                        <input type="file" name='imagen' />
+                                        <label htmlFor="username">Username:</label>
+                                        <input type="text" id='username' name='username' required />
 
-                                    <label htmlFor="email">Email:</label>
-                                    <input type="text" id='email' name='email' />
+                                        <label htmlFor="email">Email:</label>
+                                        <input type="text" id='email' name='email' />
 
-                                    <label htmlFor="password">Password:</label>
-                                    <input type="password" id='password' name='password' />
-                                    <button type='submit' className='buttonLog'>Enviar</button>
-                                </form>
-                            </div>
-                            <div className='Div-Bottom'>
-                                <span > -Or Sign In with- </span>
-                                <div>
-                                    <div className='cardsSocialMedias'>
-                                        <FaGoogle className='iconsSocialMedia' />
-                                        <span>Google</span>
-                                    </div>
-                                    <div className='cardsSocialMedias'>
-                                        <FaMicrosoft className='iconsSocialMedia' />
-                                        <span>Microsoft</span>
-                                    </div>
-                                    <div className='cardsSocialMedias'>
-                                        <FaFacebook className='iconsSocialMedia' />
-                                        <span>Facebook</span>
-                                    </div>
+                                        <label htmlFor="password">Password:</label>
+                                        <input type="password" id='password' name='password' />
+                                        <button type='submit' className='buttonLog'>Enviar</button>
+                                    </form>
                                 </div>
-                                <span>Already have an account?</span><Link to={'/'}>Log In</Link>
+                                <div className='Div-Bottom'>
+                                    <span > -Or Sign In with- </span>
+                                    <div>
+                                        <div className='cardsSocialMedias'>
+                                            <FaGoogle className='iconsSocialMedia' />
+                                            <span>Google</span>
+                                        </div>
+                                        <div className='cardsSocialMedias'>
+                                            <FaMicrosoft className='iconsSocialMedia' />
+                                            <span>Microsoft</span>
+                                        </div>
+                                        <div className='cardsSocialMedias'>
+                                            <FaFacebook className='iconsSocialMedia' />
+                                            <span>Facebook</span>
+                                        </div>
+                                    </div>
+                                    <span>Already have an account?</span><Link to={'/'}>Log In</Link>
+                                </div>
                             </div>
-                    </div>
-                </section >
-                <div className='img-container'>
-                    <img src={Img2} alt="" className='img' />
+                        </section >
+                        <div className='img-container'>
+                            <img src={Img2} alt="" className='img' />
+                        </div>
+                    </div >
                 </div>
-            </div >
-        </div>
             </>
 
         </motion.div >

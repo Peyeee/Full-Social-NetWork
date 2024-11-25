@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import NavBar from '../NavBar/NavBar';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 function Main() {
     const navigate = useNavigate();
@@ -12,15 +13,45 @@ function Main() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await axios.post("http://localhost:5000/get-usuarios", {
+                username,
+                password
+            })
 
-        // Guardar username en localStorage
-        localStorage.setItem('username', username);
+            localStorage.setItem('user', JSON.stringify(response.data));
+
+            navigate('/home');
+        } catch (error) {
+            console.log("error al iniciar sesión", error.response?.data || error.message);
+            alert(error.response?.data?.error || "Error al iniciar sesión");
+        }
 
         // Redirigir a la página de inicio
-        navigate('/home');
     };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     try {
+    //         const response = await axios.post('http://localhost:5000/get-usuarios', {
+    //             username,
+    //             password,
+    //         });
+
+    //         // Guardar la información del usuario en localStorage
+    //         localStorage.setItem('user', JSON.stringify(response.data));
+
+    //         // Redirigir al inicio
+    //         navigate('/home');
+    //     } catch (error) {
+    //         console.error("Error al iniciar sesión:", error.response?.data || error.message);
+    //         alert(error.response?.data?.error || "Error al iniciar sesión");
+    //     }
+    // };
 
 
     return (
@@ -41,7 +72,7 @@ function Main() {
                                     <p>Hey, Enter your details to login to your account</p>
                                 </div>
                                 <div className='Div-Mid-Data'>
-                                    <form action="http://localhost:5000/get-usuarios" method='POST' className='formLogin' onSubmit={handleSubmit} >
+                                    <form action="http://localhost:5000/get-usuarios" className='formLogin' onSubmit={handleSubmit} >
                                         <label htmlFor="pfp"></label>
                                         <label htmlFor="username">Username:</label>
                                         <input
@@ -54,7 +85,14 @@ function Main() {
                                         />
 
                                         <label htmlFor="password">Password:</label>
-                                        <input type="password" id='passwordLogin' name='password' />
+                                        <input
+                                            type="password"
+                                            id="passwordLogin"
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
 
                                         <button type='submit' className='buttonSign'>Enviar</button>
                                     </form>

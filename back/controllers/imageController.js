@@ -1,4 +1,4 @@
-const imageService = require('../services/imageService');
+const imageService = require('../controllers/usuariosControllers');
 
 const uploadImage = async (req, res) => {
     try {

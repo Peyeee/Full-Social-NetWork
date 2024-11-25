@@ -22,40 +22,33 @@ function MyAccount() {
         }
     };
 
-    const [imagen, setImagen] = useState(null);
     const fileInputRef = useRef(null);
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const imageURL = URL.createObjectURL(file);
-            setImagen(imageURL);
-            localStorage.setItem('pfp', imageURL); // Almacena la URL en localStorage
-        }
-    };
-
-    useEffect(() => {
-        const storedImage = localStorage.getItem('pfp');
-        if (storedImage) {
-            setImagen(storedImage);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedImage = localStorage.getItem('pfp');
+    //     if (storedImage) {
+    //         setImagen(storedImage);
+    //     }
+    // }, []);
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
 
     const [username, setUsername] = useState('');
+    const [imagen, setImagen] = useState(null);
     const navigate = useNavigate();
 
+
     useEffect(() => {
-        const storedUsername = localStorage.getItem("username");
-        if (storedUsername) {
-            setUsername(storedUsername);
-        } else {
-            navigate("/")
+        // Obtener el usuario almacenado en localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            setUsername(user.username);
+            setImagen(`http://localhost:5000/uploads/${user.imagen}`);
         }
-    }, [navigate()]);
+    }, []);
 
     const [description, setDescription] = useState('Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aut itaque debitis ratione sunt, ut nobis...');
     const [isEditing, setIsEditing] = useState(false);
@@ -69,26 +62,19 @@ function MyAccount() {
         setIsEditing(!isEditing);
     };
 
-    useEffect(() => {
-        const storedDescription = localStorage.getItem('description');
-        if (storedDescription) {
-            setDescription(storedDescription);
-        }
-    }, []);
-
-    //! FUNCION PARA OBTENER EL NOMBRE DESDE LA DB
-    useEffect(() => {
-        const getUsername = async () => {
-            try {
-                let response = await fetch("http://localhost:5000/get-usuarios");
-                let data = await response.json;
-                let setUsername = (data.username)
-            } catch (error) {
-                console.error("error al obtener el nombre" + error)
-            };
-        };
-        getUsername()
-    }, [])
+    // // //! FUNCION PARA OBTENER EL NOMBRE DESDE LA DB
+    // useEffect(() => {
+    //     const getUsername = async () => {
+    //         try {
+    //             let response = await fetch("http://localhost:5000/get-usuarios");
+    //             let data = await response.json;
+    //             let setUsername = (data.username)
+    //         } catch (error) {
+    //             console.error("error al obtener el nombre" + error)
+    //         };
+    //     };
+    //     getUsername()
+    // }, [])
 
     //!FUNCION PARA ENVIAR EL NOMBRE AL DOM
     const enviarDatos = async () => {
@@ -157,13 +143,6 @@ function MyAccount() {
                         </div>
                     </div>
                 </div>
-
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                />
             </div>
         </>
     );
