@@ -32,36 +32,37 @@ Backend
 ├── 📁 Back          # Código del backend (Node.js + Express)  
 ├── 📄 README.md     # Documentación del proyecto  
 └── 📄 package.json  # Dependencias  
+
 🌟 Instalación y configuración
 
-1.Clona este repositorio:
+1. Clona este repositorio:
 
-git clone https://github.com/tu-usuario/tu-repositorio.git  
+        git clone https://github.com/tu-usuario/tu-repositorio.git  
 
-Ve al directorio del backend e instala las dependencias:
+2. Ve al directorio del backend e instala las dependencias:
 
-cd Back  
-npm install  
+        cd Back  
+        npm install  
 
-Configura las variables de entorno en un archivo .env en el directorio Back:
+3. Configura las variables de entorno en un archivo .env en el directorio Back:
 
-MONGO_URI=<URL-de-tu-Base-de-Datos>  
-JWT_SECRET=<Clave-secreta>  
+        MONGO_URI=<URL-de-tu-Base-de-Datos>  
+        JWT_SECRET=<Clave-secreta>  
 
-Inicia el servidor:
+4. Inicia el servidor:
 
-npm start  
+        npm start  
 
-Ve al directorio del frontend e instala las dependencias:
+        Ve al directorio del frontend e instala las dependencias:
 
-cd ../Front  
-npm install  
+        cd ../Front  
+        npm install  
 
-Inicia la aplicación en modo desarrollo:
+5. Inicia la aplicación en modo desarrollo:
 
-    npm start  
+        npm start  
 
-    Abre tu navegador en http://localhost:3000.
+        Abre tu navegador en http://localhost:3000.
 
 🌐 Despliegue
 
@@ -69,7 +70,6 @@ El backend está desplegado en Render.
 Próximamente, se habilitará el despliegue del frontend para que puedas explorar la aplicación completa en línea.
 📌 Próximos pasos
 
-    Implementar mensajería en tiempo real entre usuarios.
     Agregar una funcionalidad de notificaciones.
     Mejorar el SEO y accesibilidad.
 
@@ -91,4 +91,3 @@ Página principal mostrando publicaciones.
 
     GitHub: @tu-usuario
     Correo electrónico: tuemail@example.com
-
