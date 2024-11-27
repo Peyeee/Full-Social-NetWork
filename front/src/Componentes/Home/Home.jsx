@@ -11,7 +11,7 @@ function Home({ tweets, setTweets }) {
     const location = useLocation();
     const [username, setUsername] = useState('');
     const [pfp, setpfp] = useState(null);
-
+    const [imagen, setImagen] = useState(null);
     const socketRef = useRef();
 
     // Conectar el socket al montar el componente
@@ -42,7 +42,7 @@ function Home({ tweets, setTweets }) {
                 text: tweetText,
                 date: getTimeFormatted(), // HH:MM
                 tweeterName: username,
-                imagen: pfp,
+                imagen: imagen,
             };
 
             // Emitir el tweet al servidor
