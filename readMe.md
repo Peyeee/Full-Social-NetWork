@@ -36,32 +36,32 @@ Backend
 
 1.Clona este repositorio:
 
-git clone https://github.com/tu-usuario/tu-repositorio.git  
+        git clone https://github.com/tu-usuario/tu-repositorio.git  
 
-Ve al directorio del backend e instala las dependencias:
+2. Ve al directorio del backend e instala las dependencias:
 
-cd Back  
-npm install  
+        cd Back  
+        npm install  
+    
+3. Configura las variables de entorno en un archivo .env en el directorio Back:
 
-Configura las variables de entorno en un archivo .env en el directorio Back:
+        MONGO_URI=<URL-de-tu-Base-de-Datos>  
+        JWT_SECRET=<Clave-secreta>  
 
-MONGO_URI=<URL-de-tu-Base-de-Datos>  
-JWT_SECRET=<Clave-secreta>  
+4.Inicia el servidor:
 
-Inicia el servidor:
+        npm start  
 
-npm start  
+        Ve al directorio del frontend e instala las dependencias:
 
-Ve al directorio del frontend e instala las dependencias:
+        cd ../Front  
+        npm install  
 
-cd ../Front  
-npm install  
+5.Inicia la aplicación en modo desarrollo:
 
-Inicia la aplicación en modo desarrollo:
+        npm start  
 
-    npm start  
-
-    Abre tu navegador en http://localhost:3000.
+        Abre tu navegador en http://localhost:3000.
 
 🌐 Despliegue
 
