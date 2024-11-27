@@ -17,7 +17,7 @@ function Main() {
         e.preventDefault();
         
         try {
-            const response = await axios.post("http://localhost:5000/get-usuarios", {
+            const response = await axios.post("https://full-social-network.onrender.com/get-usuarios", {
                 username,
                 password
             })
@@ -72,7 +72,7 @@ function Main() {
                                     <p>Hey, Enter your details to login to your account</p>
                                 </div>
                                 <div className='Div-Mid-Data'>
-                                    <form action="http://localhost:5000/get-usuarios" className='formLogin' onSubmit={handleSubmit} >
+                                    <form action="https://full-social-network.onrender.com/get-usuarios" className='formLogin' onSubmit={handleSubmit} >
                                         <label htmlFor="pfp"></label>
                                         <label htmlFor="username">Username:</label>
                                         <input

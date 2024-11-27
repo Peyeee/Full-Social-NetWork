@@ -16,7 +16,7 @@ function Home({ tweets, setTweets }) {
 
     // Conectar el socket al montar el componente
     useEffect(() => {
-        socketRef.current = io.connect("http://localhost:5000");
+        socketRef.current = io.connect("https://full-social-network.onrender.com/");
 
         // Escuchar eventos de nuevos tweets
         socketRef.current.on("new_tweet", (newTweet) => {

@@ -111,7 +111,7 @@ router.post("/save-usuarios", upload.single("imagen"), async (req, res) => {
         console.log('req.file:', req.file); // Verifica el archivo cargado
         console.log('req.body:', req.body); // Verifica los demás datos
         //? REDIRECCIONAR
-        res.redirect("http://localhost:5173")
+        res.redirect("https://full-social-network-1.onrender.com/")
 
 
 

@@ -16,7 +16,7 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://full-social-network-1.onrender.com/",
         methods: ["GET", "POST", "DELETE"]
     }
 });
@@ -40,7 +40,7 @@ app.use(express.json()); //* Para parsear JSON en las solicitudes
 
 //!Cors
 app.use(cors({
-    origin: 'http://localhost:5173', // Cambia esto al origen de tu frontend
+    origin: 'https://full-social-network-1.onrender.com', // Cambia esto al origen de tu frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 

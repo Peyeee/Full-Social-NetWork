@@ -46,7 +46,7 @@ function MyAccount() {
 
         if (user) {
             setUsername(user.username);
-            setImagen(`http://localhost:5000/uploads/${user.imagen}`);
+            setImagen(`https://full-social-network.onrender.com/uploads/${user.imagen}`);
         }
     }, []);
 
@@ -81,7 +81,7 @@ function MyAccount() {
         const body = { username };
 
         try {
-            const response = await fetch("http://localhost:5000/get-usuarios", {
+            const response = await fetch("https://full-social-network.onrender.com/get-usuarios", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

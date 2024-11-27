@@ -77,7 +77,7 @@ function Register(props) {
                                 <div className='Div-Mid-Data'>
                                     {/* ! This component needs to handle error states */}
 
-                                    <form action="http://localhost:5000/save-usuarios" method='POST' className='formRegister' enctype="multipart/form-data">
+                                    <form action="https://full-social-network.onrender.com/save-usuarios" method='POST' className='formRegister' enctype="multipart/form-data">
                                         <input type="file" name='imagen' />
                                         <label htmlFor="username">Username:</label>
                                         <input type="text" id='username' name='username' required />

@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/socket.io": {
-        target: "http://localhost:5000",
+        target: "https://full-social-network.onrender.com/",
         ws: true
       }
     }
