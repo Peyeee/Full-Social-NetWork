@@ -32,37 +32,36 @@ Backend
 ├── 📁 Back          # Código del backend (Node.js + Express)  
 ├── 📄 README.md     # Documentación del proyecto  
 └── 📄 package.json  # Dependencias  
-
 🌟 Instalación y configuración
 
-1. Clona este repositorio:
+1.Clona este repositorio:
 
-        git clone https://github.com/tu-usuario/tu-repositorio.git  
+git clone https://github.com/tu-usuario/tu-repositorio.git  
 
-2. Ve al directorio del backend e instala las dependencias:
+Ve al directorio del backend e instala las dependencias:
 
-        cd Back  
-        npm install  
+cd Back  
+npm install  
 
-3. Configura las variables de entorno en un archivo .env en el directorio Back:
+Configura las variables de entorno en un archivo .env en el directorio Back:
 
-        MONGO_URI=<URL-de-tu-Base-de-Datos>  
-        JWT_SECRET=<Clave-secreta>  
+MONGO_URI=<URL-de-tu-Base-de-Datos>  
+JWT_SECRET=<Clave-secreta>  
 
-4. Inicia el servidor:
+Inicia el servidor:
 
-        npm start  
+npm start  
 
-        Ve al directorio del frontend e instala las dependencias:
+Ve al directorio del frontend e instala las dependencias:
 
-        cd ../Front  
-        npm install  
+cd ../Front  
+npm install  
 
-5. Inicia la aplicación en modo desarrollo:
+Inicia la aplicación en modo desarrollo:
 
-        npm start  
+    npm start  
 
-        Abre tu navegador en http://localhost:3000.
+    Abre tu navegador en http://localhost:3000.
 
 🌐 Despliegue
 
@@ -70,18 +69,16 @@ El backend está desplegado en Render.
 Próximamente, se habilitará el despliegue del frontend para que puedas explorar la aplicación completa en línea.
 📌 Próximos pasos
 
+    Implementar mensajería en tiempo real entre usuarios.
     Agregar una funcionalidad de notificaciones.
     Mejorar el SEO y accesibilidad.
 
 🤝 Contribuciones
 
 ¡Las contribuciones son bienvenidas! Siéntete libre de abrir issues o enviar pull requests.
-🖼️ Capturas de pantalla
-
-Agrega imágenes de la aplicación en funcionamiento:
 
 
-Página de inicio de sesión.
+
 
 
 Página principal mostrando publicaciones.
@@ -89,5 +86,7 @@ Página principal mostrando publicaciones.
 
 ¿Tienes dudas o comentarios? ¡Contáctame!
 
-    GitHub: @tu-usuario
-    Correo electrónico: tuemail@example.com
+    GitHub: @Peyeee
+    Correo electrónico: lautaro.bombace@gmail.com
+    
+
