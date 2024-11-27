@@ -7,6 +7,9 @@ import NavBar from './Componentes/NavBar/NavBar';
 import MiAccount from './Componentes/Account/Account.jsx';
 import Register from './Componentes/Register/Register.jsx';
 import CosmeFulanito from './Componentes/CosmeFulanito/Cosme.jsx';
+
+import { useEffect } from 'react';
+
 import io from "socket.io-client"
 
 const socket = io("https://full-social-network.onrender.com", {
