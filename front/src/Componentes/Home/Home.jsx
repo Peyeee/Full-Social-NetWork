@@ -77,7 +77,7 @@ function Home({ tweets, setTweets }) {
 
         if (user) {
             setUsername(user.username);
-            setImagen(`https://full-social-network.onrender.com/${user.imagen}`);
+            setImagen(`https://full-social-network.onrender.com/uploads/${user.imagen}`);
         }
     }, []);
 
