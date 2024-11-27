@@ -9,12 +9,31 @@ import Register from './Componentes/Register/Register.jsx';
 import CosmeFulanito from './Componentes/CosmeFulanito/Cosme.jsx';
 import io from "socket.io-client"
 
-const sockek = io("https://full-social-network.onrender.com/")
+const socket = io("https://full-social-network.onrender.com", {
+  transports: ["websocket"]
+});
 
 function App() {
   const [tweets, setTweets] = useState([]);
   const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
   const [pfp, setpfp] = useState(null)
+
+  useEffect(() => {
+    // Escuchar eventos
+    socket.on("connect", () => {
+      console.log("Conectado a Socket.IO:", socket.id);
+    });
+
+    socket.on("new_tweet", (tweet) => {
+      console.log("Nuevo tweet recibido:", tweet);
+    });
+
+    // Limpiar al desmontar el componente
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
   return (
     <Router>
       <Routes basename="/SocialNetwork-Mini-Project">

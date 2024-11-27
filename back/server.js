@@ -8,6 +8,8 @@ const usuariosRoutes = require('./routes/usuariosRoutes');
 const bodyParser = require('body-parser')
 const session = require("express-session");
 const path = require('path');
+const helmet = require('helmet');
+
 require('dotenv').config();
 
 //!Socket 
@@ -19,7 +21,7 @@ const io = new Server(server, {
         origin: "https://full-social-network-1.onrender.com",
         methods: ["GET", "POST", "DELETE"]
     },
-    transports: ["websocket", "pollin"]
+    transports: ["websocket", "polling"]
 });
 
 //?IO
@@ -45,6 +47,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
+app.use(helmet());
 //!MiddleWare Formulario
 app.use(bodyParser.urlencoded({ extended: true })); // Para poder leer los datos del formulario
 app.use(express.urlencoded({ extended: true }));
@@ -57,7 +60,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
 //! Definir rutas
