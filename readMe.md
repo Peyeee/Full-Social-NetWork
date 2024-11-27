@@ -32,10 +32,9 @@ Backend
 ├── 📁 Back          # Código del backend (Node.js + Express)  
 ├── 📄 README.md     # Documentación del proyecto  
 └── 📄 package.json  # Dependencias  
-
 🌟 Instalación y configuración
 
-    Clona este repositorio:
+1.Clona este repositorio:
 
 git clone https://github.com/tu-usuario/tu-repositorio.git  
 
@@ -70,6 +69,7 @@ El backend está desplegado en Render.
 Próximamente, se habilitará el despliegue del frontend para que puedas explorar la aplicación completa en línea.
 📌 Próximos pasos
 
+    Implementar mensajería en tiempo real entre usuarios.
     Agregar una funcionalidad de notificaciones.
     Mejorar el SEO y accesibilidad.
 
@@ -91,3 +91,4 @@ Página principal mostrando publicaciones.
 
     GitHub: @tu-usuario
     Correo electrónico: tuemail@example.com
+
