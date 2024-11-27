@@ -16,7 +16,7 @@ function Home({ tweets, setTweets }) {
 
     // Conectar el socket al montar el componente
     useEffect(() => {
-        socketRef.current = io.connect("https://full-social-network.onrender.com/");
+        socketRef.current = io.connect("https://full-social-network.onrender.com");
 
         // Escuchar eventos de nuevos tweets
         socketRef.current.on("new_tweet", (newTweet) => {
@@ -71,6 +71,23 @@ function Home({ tweets, setTweets }) {
 
     const displayTweets = location.pathname === '/home' ? tweets : [];
 
+    useEffect(() => {
+        // Obtener el usuario almacenado en localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            setUsername(user.username);
+            setImagen(`https://full-social-network.onrender.com/${user.imagen}`);
+        }
+    }, []);
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleTweet(e);
+        }
+    };
+
     return (
         <>
             <NavBar texto="Home" otroTexto={<Link to='/mi-cuenta'>My account</Link>} />
@@ -83,10 +100,12 @@ function Home({ tweets, setTweets }) {
                                 id="textArea"
                                 value={tweetText}
                                 onChange={(e) => setTweetText(e.target.value)}
+                                onKeyDown={handleKeyDown} // Escucha Enter
                             ></textarea>
                             <button className="button-idea" id="btn" type="submit">New idea?</button>
                         </form>
                     </div>
+
                 </div>
                 <div className="tweet-container">
 
