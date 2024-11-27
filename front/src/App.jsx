@@ -9,7 +9,7 @@ import Register from './Componentes/Register/Register.jsx';
 import CosmeFulanito from './Componentes/CosmeFulanito/Cosme.jsx';
 import io from "socket.io-client"
 
-const sockek = io("/")
+const sockek = io("https://full-social-network.onrender.com/")
 
 function App() {
   const [tweets, setTweets] = useState([]);

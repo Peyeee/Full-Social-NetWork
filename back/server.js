@@ -16,9 +16,10 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://full-social-network-1.onrender.com/",
+        origin: "https://full-social-network-1.onrender.com",
         methods: ["GET", "POST", "DELETE"]
-    }
+    },
+    transports: ["websocket", "pollin"]
 });
 
 //?IO
@@ -40,10 +41,9 @@ app.use(express.json()); //* Para parsear JSON en las solicitudes
 
 //!Cors
 app.use(cors({
-    origin: 'https://full-social-network-1.onrender.com', // Cambia esto al origen de tu frontend
+    origin: 'https://full-social-network-1.onrender.com', // Cambia esto al origen de tu frontend   
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
-
 
 //!MiddleWare Formulario
 app.use(bodyParser.urlencoded({ extended: true })); // Para poder leer los datos del formulario
@@ -57,7 +57,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: true }
 }));
 
 //! Definir rutas
